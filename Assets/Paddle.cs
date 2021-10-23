@@ -54,7 +54,7 @@ public class Paddle : MonoBehaviour
         _currentDirection = dir;
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         // Draws a blue line from this transform to the target
         Gizmos.color = _color;

@@ -66,7 +66,7 @@ public class Ball : MonoBehaviour
 
         float diff = this.transform.position.y - other.transform.position.y;
         Vector2 dir = _rb.velocity.x > 0 ? Vector2.right : Vector2.left;
-        _rb.velocity = Vector2.Lerp(Vector2.down + dir, Vector2.up + dir, (diff + 1) / 2) * _currentSpeed;
+        _rb.velocity = Vector2.Lerp(Vector2.down + dir, Vector2.up + dir, (diff + 1) / 2).normalized * _currentSpeed;
         UpdateAngularVelocity();
 
         // Update ball color
@@ -98,5 +98,10 @@ public class Ball : MonoBehaviour
             _startGradient.alphaKeys
         );
         _trailRenderer.colorGradient = gradient;
+    }
+
+    public float GetNormalizedSpeed()
+    {
+        return _currentSpeed / _maxSpeed;
     }
 }

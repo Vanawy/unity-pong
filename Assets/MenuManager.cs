@@ -6,16 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Start Button")]
     [SerializeField]
     private string _gameScenePath;
-    [SerializeField]
-    private Button _startButton;
     
 
     void Start()
     {
-        _startButton.onClick.AddListener(StartGame);
+
     }
 
     // Update is called once per frame
@@ -24,8 +21,18 @@ public class MenuManager : MonoBehaviour
         
     }
     
-    private void StartGame()
+    public void StartGame()
     {
         SceneManager.LoadScene(_gameScenePath);
+    }
+
+    public void Options()
+    {
+
+    }
+
+    public void ExitGame()
+    {
+
     }
 }
