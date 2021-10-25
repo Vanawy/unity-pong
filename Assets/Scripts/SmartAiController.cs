@@ -10,6 +10,8 @@ public class SmartAIController : IPaddleController
     private const float _maxOffset = .85f;
     private bool _isOffsetUpdated = false;
 
+    private const float MOVE_THRESHOLD = .05f;
+
     public void Start() {
         UpdateOffset();
     }
@@ -38,12 +40,13 @@ public class SmartAIController : IPaddleController
             target = PredictPosition(paddle, _ballRb);
         } else {
             _isOffsetUpdated = false;
+            _offset = 0;
         }
 
 
-        if (target > paddle.transform.position.y + _offset) {
+        if (target > paddle.transform.position.y + _offset + MOVE_THRESHOLD) {
             paddle.Move(Paddle.Direction.UP);
-        } else if (target < paddle.transform.position.y + _offset) {
+        } else if (target < paddle.transform.position.y + _offset - MOVE_THRESHOLD ) {
             paddle.Move(Paddle.Direction.DOWN);
         }
     }

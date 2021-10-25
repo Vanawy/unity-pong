@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1909528980652079427, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c10071d381303a4391e761990046f11, type: 2}
     - target: {fileID: 2819942315286426364, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
       propertyPath: m_Name
       value: Wall (1)
@@ -588,10 +592,10 @@ RectTransform:
   m_Father: {fileID: 1268747604}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 600, y: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 84.31781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052718317
 MonoBehaviour:
@@ -614,13 +618,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: 31c1d557e426fe447bc93262417071b6, type: 3}
+    m_FontSize: 33
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 7
+    m_MaxSize: 76
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -889,7 +893,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1773432269}
   - component: {fileID: 1773432270}
-  - component: {fileID: 1773432268}
   - component: {fileID: 1773432267}
   - component: {fileID: 1773432266}
   m_Layer: 0
@@ -951,20 +954,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 12}
   m_EdgeRadius: 0
---- !u!114 &1773432268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773432265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48cd2f6177de798429315861d2d1159c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1052718317}
-  _maxScore: 10
 --- !u!4 &1773432269
 Transform:
   m_ObjectHideFlags: 0
@@ -992,9 +981,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab9b71191da50a4d8bce72bac78b5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPaddle: {fileID: 2131052756}
-  rightPaddle: {fileID: 1761231510}
-  ball: {fileID: 1781327185}
+  _leftPaddle: {fileID: 2131052756}
+  _rightPaddle: {fileID: 1761231510}
+  _ball: {fileID: 1781327185}
+  scoreText: {fileID: 1052718317}
+  _isSlowMotionEnabled: 1
+  _slowModeScale: 0.08
+  _maxScore: 10
 --- !u!1 &1781327181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,9 +1109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49098bc311de045408ec416914f90369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSpeed: 5
+  _startSpeed: 10
   _speedIncrement: 1
-  _maxSpeed: 20
+  _maxSpeed: 100
   _baseAngularSpeed: 10
   _maxSpeedColor: {r: 1, g: 0.33490568, b: 0.8737637, a: 1}
 --- !u!4 &1781327186
@@ -1360,14 +1353,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1909528980652079427, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c10071d381303a4391e761990046f11, type: 2}
     - target: {fileID: 2819942315286426364, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
-    - target: {fileID: 5145883234813943504, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 8ba6832d9b4e4b442b0fe63391a0ed15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf759e60bea04d4083712c9ab5354a9, type: 3}
 --- !u!1001 &6110098454070392223

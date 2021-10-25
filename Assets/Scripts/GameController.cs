@@ -1,32 +1,99 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
     
     [SerializeField]
-    private Paddle leftPaddle;
+    private Paddle _leftPaddle;
     private IPaddleController leftController;
     
     [SerializeField]
-    private Paddle rightPaddle;
-    private IPaddleController rightController;
+    private Paddle _rightPaddle;
+    private IPaddleController _rightController;
 
     [SerializeField]
-    private Ball ball;
+    private Ball _ball;
+
+    [SerializeField]
+    private Text scoreText;
+
+    [Header("Settings")]
+    [SerializeField]
+    private bool _isSlowMotionEnabled = true;
+    [SerializeField]
+    [Range(0.05f, 1f)]
+    private float _slowModeScale = 0.25f;
+    
+    [SerializeField]
+    private int _maxScore = 10;
+
+    private Rigidbody2D _bRb;
+    private Rigidbody2D _lpRb;
+    private Rigidbody2D _rpRb;
+
+    
+    private int _LScore = 0;
+    private int _RScore = 0;
     
     void Start()
     {
         leftController = GameParameters.leftController;
-        rightController = GameParameters.rightController;
+        _rightController = GameParameters.rightController;
+
+        _bRb = _ball.GetComponent<Rigidbody2D>();
+        _lpRb = _leftPaddle.GetComponent<Rigidbody2D>();
+        _rpRb = _rightPaddle.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        leftController.UpdatePaddle(leftPaddle, ball);
-        rightController.UpdatePaddle(rightPaddle, ball);
+        leftController.UpdatePaddle(_leftPaddle, _ball);
+        _rightController.UpdatePaddle(_rightPaddle, _ball);
+
+        if (_isSlowMotionEnabled && (_bRb.position.x < _lpRb.position.x || _bRb.position.x > _rpRb.position.x)) {
+            Time.timeScale = _slowModeScale;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag != "Ball") {
+            return;
+        } 
+        if (other.transform.position.x < 0) {
+            _RScore++;
+        } else {
+            _LScore++;
+        }
+        UpdateScoreText();
+        Time.timeScale = 1f;
+
+        other.GetComponent<Ball>().ResetState();
+    }
+
+    public void ResetScore()
+    {
+        _LScore = _RScore = 0;
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (!scoreText) return;
+        string text = _LScore + " : " + _RScore;
+        if (_LScore + _RScore > _maxScore) {
+            if (_LScore > _RScore) {
+                text = "LEFT PLAYER WINS!";
+            } else if(_LScore < _RScore) {
+                text = "RIGHT PLAYER WINS!";
+            } else {
+                text = "DRAW";
+            }
+        }
+        scoreText.text = text;
     }
 }
