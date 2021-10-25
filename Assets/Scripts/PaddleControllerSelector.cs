@@ -8,6 +8,7 @@ public class PaddleControllerSelector : MonoBehaviour {
         Player,
         EasyAi,
         NormalAi,
+        SmartAi,
     }
 
     [SerializeField]
@@ -26,6 +27,8 @@ public class PaddleControllerSelector : MonoBehaviour {
                 return new EasyAIController();
             case ControllerType.NormalAi:
                 return new NormalAIController();
+            case ControllerType.SmartAi:
+                return new SmartAIController();
             default:
                 throw new System.Exception("Unknown paddle controller type");
         }
@@ -49,6 +52,8 @@ public class PaddleControllerSelector : MonoBehaviour {
                 return "Easy AI";
             case ControllerType.NormalAi:
                 return "Normal AI";
+            case ControllerType.SmartAi:
+                return "Smart AI";
             default:
                 return "";
         }

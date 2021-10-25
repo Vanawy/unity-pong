@@ -4,8 +4,6 @@ using System.Collections;
 public class EasyAIController : IPaddleController
 {
     private static Rigidbody2D _ballRb = null;
-    
-    public float _threshold = .9f;
 
     public void UpdatePaddle(Paddle paddle, Ball ball = null)
     {
@@ -20,11 +18,9 @@ public class EasyAIController : IPaddleController
             return;
         }
 
-        float threshold = _threshold * (1 - ball.GetNormalizedSpeed());
-
-        if (ball.transform.position.y > paddle.transform.position.y + threshold) {
+        if (ball.transform.position.y > paddle.transform.position.y) {
             paddle.Move(Paddle.Direction.UP);
-        } else if (ball.transform.position.y < paddle.transform.position.y - threshold) {
+        } else if (ball.transform.position.y < paddle.transform.position.y) {
             paddle.Move(Paddle.Direction.DOWN);
         }
     }

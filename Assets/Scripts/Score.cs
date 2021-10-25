@@ -11,6 +11,9 @@ public class Score : MonoBehaviour
     [SerializeField]
     private Text scoreText;
 
+    [SerializeField]
+    private int _maxScore = 10;
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag != "Ball") {
             return;
@@ -33,8 +36,17 @@ public class Score : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        if (scoreText) {
-            scoreText.text = _LScore + " : " + _RScore;
+        if (!scoreText) return;
+        string text = _LScore + " : " + _RScore;
+        if (_LScore + _RScore > _maxScore) {
+            if (_LScore > _RScore) {
+                text = "LEFT PLAYER WINS!";
+            } else if(_LScore < _RScore) {
+                text = "RIGHT PLAYER WINS!";
+            } else {
+                text = "DRAW";
+            }
         }
+        scoreText.text = text;
     }
 }

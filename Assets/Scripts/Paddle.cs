@@ -54,12 +54,16 @@ public class Paddle : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Draws a blue line from this transform to the target
         Gizmos.color = _color;
         Gizmos.DrawLine(transform.position, transform.position + GIZMO_LINE_LENGTH * GetFacingDirection());
     }
 
     public Vector3 GetFacingDirection() {
         return transform.right * (_isFacingLeft ? -1 : 1);
+    }
+
+    public Vector2 GetPosition()
+    {
+        return _rb.position;
     }
 }

@@ -14,10 +14,25 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private PaddleControllerSelector _right;    
+    
+    private AudioSource _menuSounds;
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioClip _clickSound;
 
     void Start()
     {
+        _menuSounds = GetComponent<AudioSource>();
+        Button[] buttons = FindObjectsOfType<Button>();
+        foreach (Button btn in buttons)
+        {
+            btn.onClick.AddListener(() => ClickSound());
+        }
+    }
 
+    public void ClickSound()
+    {
+        _menuSounds.PlayOneShot(_clickSound);
     }
 
     // Update is called once per frame
