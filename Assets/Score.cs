@@ -16,9 +16,9 @@ public class Score : MonoBehaviour
             return;
         } 
         if (other.transform.position.x < 0) {
-            _LScore++;
-        } else {
             _RScore++;
+        } else {
+            _LScore++;
         }
         UpdateScoreText();
 

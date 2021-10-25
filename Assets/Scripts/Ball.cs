@@ -30,6 +30,7 @@ public class Ball : MonoBehaviour
     private SpriteRenderer _renderer;
     private TrailRenderer _trailRenderer;
     private Gradient _startGradient;
+    private AudioSource _hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +41,12 @@ public class Ball : MonoBehaviour
         _trailRenderer = GetComponentInChildren<TrailRenderer>();
         _startGradient = _trailRenderer.colorGradient;
         ResetState();
+        _hitSound = GetComponent<AudioSource>();
     }
 
     public void ResetState()
     {
+        _trailRenderer.Clear();
         _rb.position = _startPosition;
 
         _rb.velocity = new Vector2(Choose(1, -1), Choose(1, -1, 0));
@@ -103,5 +106,9 @@ public class Ball : MonoBehaviour
     public float GetNormalizedSpeed()
     {
         return _currentSpeed / _maxSpeed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        _hitSound.Play();
     }
 }

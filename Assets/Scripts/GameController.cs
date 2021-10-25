@@ -8,16 +8,10 @@ public class GameController : MonoBehaviour
     
     [SerializeField]
     private Paddle leftPaddle;
-
-    [SerializeField]
-    private PaddleControllerSelector.ControllerType leftControllerType;
     private IPaddleController leftController;
     
     [SerializeField]
     private Paddle rightPaddle;
-
-    [SerializeField]
-    private PaddleControllerSelector.ControllerType rightControllerType;
     private IPaddleController rightController;
 
     [SerializeField]
@@ -25,8 +19,8 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
-        leftController = PaddleControllerSelector.GetPaddleController(leftControllerType);
-        rightController = PaddleControllerSelector.GetPaddleController(rightControllerType);
+        leftController = GameParameters.leftController;
+        rightController = GameParameters.rightController;
     }
 
     // Update is called once per frame

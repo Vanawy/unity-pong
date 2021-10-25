@@ -21,9 +21,7 @@ public class Paddle : MonoBehaviour
     }
 
     private Direction _currentDirection = Direction.NONE;
-
     private Rigidbody2D _rb;
-
     private float GIZMO_LINE_LENGTH = 2;
 
 

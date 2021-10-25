@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _color: {r: 0, g: 0, b: 0, a: 0}
+  _isFacingLeft: 0
 --- !u!212 &4786344323732449128
 SpriteRenderer:
   m_ObjectHideFlags: 0

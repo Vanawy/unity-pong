@@ -8,7 +8,12 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField]
     private string _gameScenePath;
-    
+
+    [SerializeField]
+    private PaddleControllerSelector _left;  
+
+    [SerializeField]
+    private PaddleControllerSelector _right;    
 
     void Start()
     {
@@ -23,6 +28,8 @@ public class MenuManager : MonoBehaviour
     
     public void StartGame()
     {
+        GameParameters.leftController  = _left.GetCurrentController();
+        GameParameters.rightController = _right.GetCurrentController();
         SceneManager.LoadScene(_gameScenePath);
     }
 
