@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SmartAIController : IPaddleController
 {
+    private const string NAME = "Smart AI"; 
     private static Rigidbody2D _ballRb = null;
 
     private const float BORDER_DISTANCE = 5;
@@ -21,7 +22,7 @@ public class SmartAIController : IPaddleController
         _offset = Random.Range(-_maxOffset, _maxOffset);
     }
 
-    public void UpdatePaddle(Paddle paddle, Ball ball = null)
+    public void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy)
     {
         paddle.Move(Paddle.Direction.NONE);
 
@@ -71,5 +72,10 @@ public class SmartAIController : IPaddleController
         }
 
         return intersection.y;
+    }
+
+    public string GetName()
+    {
+        return NAME;
     }
 }

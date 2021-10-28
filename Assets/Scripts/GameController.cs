@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     
     [SerializeField]
     private Paddle _leftPaddle;
-    private IPaddleController leftController;
+    private IPaddleController _leftController;
     
     [SerializeField]
     private Paddle _rightPaddle;
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     
     void Start()
     {
-        leftController = GameParameters.leftController;
+        _leftController = GameParameters.leftController;
         _rightController = GameParameters.rightController;
 
         _bRb = _ball.GetComponent<Rigidbody2D>();
@@ -52,8 +52,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        leftController.UpdatePaddle(_leftPaddle, _ball);
-        _rightController.UpdatePaddle(_rightPaddle, _ball);
+        _leftController.UpdatePaddle(_leftPaddle, _ball, _rightPaddle);
+        _rightController.UpdatePaddle(_rightPaddle, _ball, _leftPaddle);
 
         if (_isSlowMotionEnabled && (_bRb.position.x < _lpRb.position.x || _bRb.position.x > _rpRb.position.x)) {
             Time.timeScale = _slowModeScale;
@@ -85,11 +85,11 @@ public class GameController : MonoBehaviour
     {
         if (!scoreText) return;
         string text = _LScore + " : " + _RScore;
-        if (_LScore + _RScore > _maxScore) {
+        if (_LScore + _RScore >= _maxScore) {
             if (_LScore > _RScore) {
-                text = "LEFT PLAYER WINS!";
+                text = $"{_leftController.GetName()} WINS!";
             } else if(_LScore < _RScore) {
-                text = "RIGHT PLAYER WINS!";
+                text = $"{_rightController.GetName()} WINS!";
             } else {
                 text = "DRAW";
             }

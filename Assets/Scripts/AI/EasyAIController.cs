@@ -3,9 +3,15 @@ using System.Collections;
 
 public class EasyAIController : IPaddleController
 {
+    private const string NAME = "Easy AI"; 
     private static Rigidbody2D _ballRb = null;
 
-    public void UpdatePaddle(Paddle paddle, Ball ball = null)
+    public string GetName()
+    {
+        return NAME;
+    }
+
+    public void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy)
     {
         paddle.Move(Paddle.Direction.NONE);
 

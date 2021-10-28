@@ -2,6 +2,6 @@ using UnityEngine;
 using System.Collections;
 
 public interface IPaddleController {
-
-      void UpdatePaddle(Paddle paddle, Ball ball = null);
+      string GetName();
+      void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy);
 }

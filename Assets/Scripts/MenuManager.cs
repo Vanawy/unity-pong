@@ -43,8 +43,8 @@ public class MenuManager : MonoBehaviour
     
     public void StartGame()
     {
-        GameParameters.leftController  = _left.GetCurrentController();
-        GameParameters.rightController = _right.GetCurrentController();
+        GameParameters.leftController  = _left.GetController();
+        GameParameters.rightController = _right.GetController();
         SceneManager.LoadScene(_gameScenePath);
     }
 

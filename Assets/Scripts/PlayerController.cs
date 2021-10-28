@@ -3,7 +3,14 @@ using System.Collections;
 
 public class PlayerController : IPaddleController
 {
-    public void UpdatePaddle(Paddle paddle, Ball ball = null)
+    private const string NAME = "Player";
+
+    public string GetName()
+    {
+        return NAME;
+    }
+
+    public void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy)
     {
         Paddle.Direction direction = Paddle.Direction.NONE;
         if (Input.GetKey(KeyCode.UpArrow)) {

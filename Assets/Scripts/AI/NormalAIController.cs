@@ -3,7 +3,10 @@ using System.Collections;
 
 public class NormalAIController : IPaddleController
 {
+    private const string NAME = "Normal AI"; 
     private static Rigidbody2D _ballRb = null;
+
+
     
     private float _threshold = .1f;
     private float _offset;
@@ -19,7 +22,7 @@ public class NormalAIController : IPaddleController
         _offset = Random.Range(-_maxOffset, _maxOffset);
     }
 
-    public void UpdatePaddle(Paddle paddle, Ball ball = null)
+    public void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy)
     {
         paddle.Move(Paddle.Direction.NONE);
 
@@ -43,5 +46,10 @@ public class NormalAIController : IPaddleController
         } else if (ball.transform.position.y < paddle.transform.position.y + _offset - threshold) {
             paddle.Move(Paddle.Direction.DOWN);
         }
+    }
+
+    public string GetName()
+    {
+        return NAME;
     }
 }

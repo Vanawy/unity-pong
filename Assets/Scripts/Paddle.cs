@@ -22,6 +22,7 @@ public class Paddle : MonoBehaviour
 
     private Direction _currentDirection = Direction.NONE;
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
     private float GIZMO_LINE_LENGTH = 2;
 
 
@@ -29,7 +30,8 @@ public class Paddle : MonoBehaviour
     void Start()
     {
         _rb = this.GetComponent<Rigidbody2D>();
-        GetComponent<SpriteRenderer>().color = _color;
+        _sr = GetComponent<SpriteRenderer>();
+        _sr.color = _color;
     }
 
     private void FixedUpdate() {
@@ -65,5 +67,13 @@ public class Paddle : MonoBehaviour
     public Vector2 GetPosition()
     {
         return _rb.position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        _sr.color = Color.white;
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        _sr.color = _color;
     }
 }

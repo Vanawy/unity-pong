@@ -16,8 +16,8 @@ public class Ball : MonoBehaviour
     [Range(1, 100)]
     private int _maxSpeed = 20;
     [SerializeField]
-    [Range(1, 20)]
-    private int _baseAngularSpeed = 5;
+    [Range(0, 1)]
+    private float _baseAngularSpeed = 5;
     private float _currentSpeed;
 
     private Vector2 _startPosition;
@@ -29,6 +29,8 @@ public class Ball : MonoBehaviour
     private Color _maxSpeedColor = Color.black;
     private SpriteRenderer _renderer;
     private TrailRenderer _trailRenderer;
+    [SerializeField]
+    private Rotate _trailsRotate;
     private Gradient _startGradient;
     private AudioSource _hitSound;
 
@@ -65,7 +67,7 @@ public class Ball : MonoBehaviour
         if (_currentSpeed >= _maxSpeed) {
             maxSpeedReached = true;
             _currentSpeed = _maxSpeed;
-        }        
+        }
 
         float diff = this.transform.position.y - other.transform.position.y;
         Vector2 dir = _rb.velocity.x > 0 ? Vector2.right : Vector2.left;
@@ -85,7 +87,7 @@ public class Ball : MonoBehaviour
 
     private void UpdateAngularVelocity()
     {
-        _rb.angularVelocity = Choose<float>(_baseAngularSpeed, -_baseAngularSpeed) * _currentSpeed;
+        _trailsRotate._rotationSpeed = Choose<float>(_baseAngularSpeed, -_baseAngularSpeed) * _currentSpeed;
     }
 
     private void UpdateColor(Color color)
