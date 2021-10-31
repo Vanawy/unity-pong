@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour
     [Range(0, 1)]
     private float _speedIncrement = 0.5f;
     [SerializeField]
+    private bool _limitSpeed = true;
+    [SerializeField]
     [Range(1, 100)]
     private int _maxSpeed = 20;
     [SerializeField]
@@ -64,7 +66,7 @@ public class Ball : MonoBehaviour
         }
         bool maxSpeedReached = false;
         _currentSpeed += _speedIncrement;
-        if (_currentSpeed >= _maxSpeed) {
+        if (_limitSpeed && _currentSpeed >= _maxSpeed) {
             maxSpeedReached = true;
             _currentSpeed = _maxSpeed;
         }
@@ -112,5 +114,10 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         _hitSound.Play();
+    }
+
+    public void SetLimitSpeed(bool value)
+    {
+        _limitSpeed = value;
     }
 }

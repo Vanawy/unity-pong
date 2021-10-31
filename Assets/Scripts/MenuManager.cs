@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         _menuSounds = GetComponent<AudioSource>();
         Button[] buttons = FindObjectsOfType<Button>();
         foreach (Button btn in buttons)

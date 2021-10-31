@@ -13,10 +13,9 @@ public class PlayerController : IPaddleController
     public void UpdatePaddle(Paddle paddle, Ball ball, Paddle enemy)
     {
         Paddle.Direction direction = Paddle.Direction.NONE;
-        if (Input.GetKey(KeyCode.UpArrow)) {
+        if (Input.GetAxisRaw("Vertical") > 0) {
             direction = Paddle.Direction.UP;
-        }
-        if (Input.GetKey(KeyCode.DownArrow)) {
+        } else if(Input.GetAxisRaw("Vertical") < 0) {
             direction = Paddle.Direction.DOWN;
         }
         paddle.Move(direction);
