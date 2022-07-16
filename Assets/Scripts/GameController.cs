@@ -125,6 +125,7 @@ public class GameController : MonoBehaviour
         _animator.SetBool("IsGameEnded", _isGameEnded);
         _leftController = new SmartAIController();
         _rightController = new SmartAIController();
+        _ball.SetLimitSpeed(false);
     }
 
     public void TogglePause()
@@ -141,5 +142,10 @@ public class GameController : MonoBehaviour
     public void OpenMenu()
     {
         SceneManager.LoadScene(_menuScenePath);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
